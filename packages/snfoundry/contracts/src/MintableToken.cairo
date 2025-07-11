@@ -77,7 +77,7 @@ pub mod MintableToken {
         fn mint(ref self: ContractState, recipient: ContractAddress, amount: u256) { 
             // Only Owner can mint new tokens
             self.ownable.assert_only_owner(); 
-            assert!(!self.paused.read(), "Mingting is paused");
+            assert!(!self.paused.read(), "Minting is paused");
             self.erc20.mint(recipient, amount);
             self.total_minted.write(self.total_minted.read() + amount);
             self.emit(CustomMinted { to: recipient, amount});
